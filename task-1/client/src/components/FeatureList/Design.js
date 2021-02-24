@@ -9,7 +9,7 @@ import CheckBox from '../common/CheckBox';
 import CardLayout from '../common/CardLayout';
 
 // Main component function
-const LoginSystem = ({ featureData }) => {
+const Design = ({ featureData }) => {
   const { addFeature } = useContext(CostContext);
 
   const handleInputChange = (event) => {
@@ -17,23 +17,24 @@ const LoginSystem = ({ featureData }) => {
   }
 
   return (
-    <CardLayout sectionTitle = 'Login System'>
+    <CardLayout sectionTitle = 'Design'>
+
       <CheckBox
-        id='email_pass_login'
-        name={featureData.emailPasswordLogin.name}
-        value={featureData.emailPasswordLogin.price}
+        id='ux_ui'
+        name={featureData.design.name}
+        value={featureData.design.price}
         handleInputChange = {handleInputChange}
-        featureData = {featureData}
       />
 
       <CheckBox
-        id='social_login'
-        name={featureData.socialLogin.name}
-        value={featureData.socialLogin.price}
+        id='responsive_design'
+        name={featureData.responsiveDesign.name}
+        value={featureData.responsiveDesign.price}
         handleInputChange = {handleInputChange}
       />
+
     </CardLayout>
   )
 }
 
-export default LoginSystem;
+export default Design;

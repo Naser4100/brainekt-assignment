@@ -1,51 +1,47 @@
 // Library 
+import React from 'react'
 import {
   Container,
   Grid,
-  Paper
+  CssBaseline
 } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-// Components files
+// Component files
 import FeatureList from './components/FeatureList';
 import Cost from './components/Cost';
+import AppBarComp from './components/Layout/AppBarComp';
+
 
 // Context files
 import CostState from './context/costContext/costState';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-}));
-
+// Main component
 const App = () => {
-  const classes = useStyles();
   return (
     <CostState>
-      <div className={classes.root}>
-        <Container maxWidth="lg">
+      <AppBarComp/>
+      <React.Fragment>
+        <CssBaseline />
+        <Container fixed>
           <Grid container spacing={3}>
 
-            {/* All the feature list goes to this grid*/}
-            <Grid item xs={6}>
-              <Paper elevation={3} className={classes.paper}><FeatureList/></Paper>
+            <Grid item xs={12} sm={6} md={7} lg={7}>
+              <Grid container>
+                <Grid item xs>
+                  {/* Feature list component */}
+                  <FeatureList/>
+                </Grid>
+              </Grid>
             </Grid>
 
-            {/* Cost component goes to this grid*/}
-            <Grid item xs={6}>
-              <Paper elevation={3} className={classes.paper}><Cost/></Paper>
+            <Grid item xs={12} sm={6} md={5} lg={5}>
+              {/* Cost component */}
+              <Cost />
             </Grid>
-
+            
           </Grid>
         </Container>
-      </div>
+      </React.Fragment>
     </CostState>
   );
 }
