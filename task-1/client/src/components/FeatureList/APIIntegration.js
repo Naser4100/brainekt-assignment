@@ -9,7 +9,7 @@ import CheckBox from '../common/CheckBox';
 import CardLayout from '../common/CardLayout';
 
 // Main component function
-const LoginSystem = ({ featureData }) => {
+const APIIntegration = ({ featureData }) => {
   const { addFeature } = useContext(CostContext);
 
   const handleInputChange = (event) => {
@@ -17,23 +17,17 @@ const LoginSystem = ({ featureData }) => {
   }
 
   return (
-    <CardLayout sectionTitle = 'Login System'>
-      <CheckBox
-        id='email_pass_login'
-        name={featureData.emailPasswordLogin.name}
-        value={featureData.emailPasswordLogin.price}
-        handleInputChange = {handleInputChange}
-        featureData = {featureData}
-      />
+    <CardLayout sectionTitle = 'API Integration'>
 
       <CheckBox
-        id='social_login'
-        name={featureData.socialLogin.name}
-        value={featureData.socialLogin.price}
+        id='api_integration'
+        name={featureData.apiIntegration.name}
+        value={featureData.apiIntegration.price}
         handleInputChange = {handleInputChange}
       />
+
     </CardLayout>
   )
 }
 
-export default LoginSystem;
+export default APIIntegration;

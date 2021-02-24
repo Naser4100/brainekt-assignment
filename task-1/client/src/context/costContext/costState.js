@@ -19,11 +19,24 @@ const CostState = (props) => {
   const [state, dispatch] = useReducer(CostReducer, initialState)
 
   // Add new feature to featureList array
-  const addFeature = async event => {
+  const addFeature = async data => {
+    console.log(state.featureList);
     try{
       dispatch({
       type: ADD_FEATURE,
-      payload: event.target
+      payload: data
+      });
+      reCalculateCost();
+    }catch (err) {  
+      console.log(err);
+    }
+  }
+
+   // Add new feature to featureList array
+  const reCalculateCost = async () => {
+    try{
+      dispatch({
+      type: RECALCULATE_PRICE,
       });
     }catch (err) {  
       console.log(err);
@@ -35,6 +48,7 @@ const CostState = (props) => {
       featureList: state.featureList,
       totalCost: state.totalCost,
       addFeature,
+      reCalculateCost,
   }}>
     {props.children}
   </CostContext.Provider >

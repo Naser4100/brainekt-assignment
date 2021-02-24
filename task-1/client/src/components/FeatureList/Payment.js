@@ -7,9 +7,10 @@ import CostContext from '../../context/costContext/costContext';
 // Reusable components
 import CheckBox from '../common/CheckBox';
 import CardLayout from '../common/CardLayout';
+import NumberSlider from '../common/NumberSlider';
 
 // Main component function
-const LoginSystem = ({ featureData }) => {
+const Payment = ({ featureData }) => {
   const { addFeature } = useContext(CostContext);
 
   const handleInputChange = (event) => {
@@ -17,23 +18,29 @@ const LoginSystem = ({ featureData }) => {
   }
 
   return (
-    <CardLayout sectionTitle = 'Login System'>
+    <CardLayout sectionTitle = 'Payment'>
+
       <CheckBox
-        id='email_pass_login'
-        name={featureData.emailPasswordLogin.name}
-        value={featureData.emailPasswordLogin.price}
+        id='dashboard'
+        name={featureData.shoppingCart.name}
+        value={featureData.shoppingCart.price}
         handleInputChange = {handleInputChange}
-        featureData = {featureData}
       />
 
       <CheckBox
-        id='social_login'
-        name={featureData.socialLogin.name}
-        value={featureData.socialLogin.price}
+        id='payment_process'
+        name={featureData.paymentProcess.name}
+        value={featureData.paymentProcess.price}
         handleInputChange = {handleInputChange}
       />
+
+      <NumberSlider
+        name={featureData.membershipSubscription.name}
+        sliderTitle={featureData.membershipSubscription.name}
+      />
+
     </CardLayout>
   )
 }
 
-export default LoginSystem;
+export default Payment;

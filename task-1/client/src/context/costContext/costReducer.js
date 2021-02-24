@@ -6,6 +6,7 @@ import {
 const costReducer =  (state, action) => {
   switch(action.type) {
     case ADD_FEATURE:
+      console.log(action.payload);
       return {
         ...state, // returning all the current state
 
@@ -15,15 +16,17 @@ const costReducer =  (state, action) => {
                     state.featureList.filter(feature => feature.id !== action.payload.id) : // if exists then remove from featureList
                     [...state.featureList, // If not exists the add the new feature to featureList array
                       { id: action.payload.id, 
-                        featureName: action.payload.name,
-                        featurePrice: +action.payload.value,
+                        featureName: action.payload.featureName,
+                        featurePrice: +action.payload.featurePrice,
                       }
                     ],
+
+        // featureList: [...state.featureList, state.featureList.filter((feature) => feature.id !== action.payload.id ? action.payload : feature)] 
         }
     case RECALCULATE_PRICE:
       return {
         ...state,
-        totalCost: state.featureList.reduce((a,b) => a.featurePrice + b.featurePrice)
+        totalCost: state.featureList.reduce((a, p) => p.featurePrice + a, 0)
       };
     default:
       return state
