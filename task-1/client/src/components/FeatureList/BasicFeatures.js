@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   FormControl,
-  FormLabel,
   FormGroup,
   FormControlLabel,
   Checkbox,
-  FormHelperText,
-  TextField,
+  Typography,
+  Slider,
+  Card,
+  CardContent,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+
+import CostContext from '../../context/costContext/costContext';
+
+// Feature data
+import featureData from '../../featuresData.json'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,10 +23,16 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
   },
+  card: {
+    marginBottom: 12,
+  }
 }));
 
 const BasicFeatures = () => {
+  const { addFeature, featureList } = useContext(CostContext);
+
   const classes = useStyles();
+
   const [basicFeatures, setBasicFeatures] = useState({
     numberOfPage: 0,
     blogFunctionality: 45,
@@ -40,46 +52,131 @@ const BasicFeatures = () => {
     console.log(newArray);
   };
 
-  
+  const handleSliderChange = (event, newValue) => {
+    setBasicFeatures({
+      numberOfPage: newValue
+    });
+  };
+
+
 
   const handleInputChange = (event) => {
     setBasicFeatures({
       ...basicFeatures, [event.target.name]: event.target.checked
     });
-    addDataToCostArray(event);
+    addFeature(event);
+  }
+
+  const setValueToArray = (event) => {
+    // addFeature(event);
   }
 
   return (
-    <div>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Basic Features</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={<TextField
-              id="standard-number"
-              label="Number"
-              variant="outlined"
-              size="small"
-              value={numberOfPage}
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />}
-            label="Number of page"
-          />
-          <FormControlLabel
-            control={<Checkbox id='naser' value={blogFunctionality} onChange={handleInputChange} name="Blog functionalities" />}
-            label="Jason Killian"
-          />
-          <FormControlLabel
-            control={<Checkbox id='abd' value={multipleLanguage} onChange={handleInputChange} name="Multiple language" />}
-            label="Antoine Llorca"
-          />
-        </FormGroup>
-        <FormHelperText>Be careful</FormHelperText>
-      </FormControl>
-    </div>
+    <Card variant='outlined' className={classes.card}>
+      <CardContent>
+        <Typography variant="h5" component="h2">
+          Basic features
+        </Typography>
+
+        <FormControl component="fieldset" className={classes.formControl}>
+          <FormGroup>
+
+            {/* Number of page slider */}
+            <Typography className={classes.root}>{featureData.numberOfPage.name}</Typography>
+            <Slider
+              min={0}
+              max={150}
+              id='number_of_page'
+              name='number_of_page'
+              value={typeof numberOfPage === 'number' ? numberOfPage : 0}
+              onChange={handleSliderChange}
+              onMouseUp={setValueToArray}
+              aria-labelledby="input-slider"
+            />
+
+            {/* Blog functionalities checkbox */}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  id='blog_functionality'
+                  value={featureData.blogFunction.price}
+                  onChange={handleInputChange}
+                  name={featureData.blogFunction.name}
+                />
+              }
+              label={featureData.blogFunction.name}
+            />
+
+            {/* Multiple language checkbox */}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  id='multi_language'
+                  value={featureData.multipleLanguage.price}
+                  onChange={handleInputChange}
+                  name={featureData.multipleLanguage.name}
+                  />
+                }
+              label={featureData.multipleLanguage.name}
+            />
+
+            {/* Optimize and speed */}
+            <Typography className={classes.root}>Optimize and speed</Typography>
+            <Slider
+              min={0}
+              max={150}
+              id='optimize_and_speed'
+              name={featureData.optimizeAndSpeed.name}
+              value={typeof numberOfPage === 'number' ? numberOfPage : 0}
+              onChange={handleSliderChange}
+              onMouseUp={setValueToArray}
+              aria-labelledby="input-slider"
+            />
+
+            {/* Database integration */}
+            <Typography className={classes.root}>Database integration</Typography>
+            <Slider
+              min={0}
+              max={150}
+              id='database_integration'
+              name={featureData.databaseIntegration.name}
+              value={typeof numberOfPage === 'number' ? numberOfPage : 0}
+              onChange={handleSliderChange}
+              onMouseUp={setValueToArray}
+              aria-labelledby="input-slider"
+            />
+
+            {/* Ecommerce functionality*/}
+            <Typography className={classes.root}>Ecommerce Functionality</Typography>
+            <Slider
+              min={0}
+              max={150}
+              id='ecommerce_functionality'
+              name={featureData.ecommerceFunctionality.name}
+              value={typeof numberOfPage === 'number' ? numberOfPage : 0}
+              onChange={handleSliderChange}
+              onMouseUp={setValueToArray}
+              aria-labelledby="input-slider"
+            />
+
+            {/* Avg Estimated Clicks per month*/}
+            <Typography className={classes.root}>Avg Estimated click per month</Typography>
+            <Slider
+              min={0}
+              max={150}
+              id='avg_est_click'
+              name={featureData.avgEstimatedClicks.name}
+              value={typeof numberOfPage === 'number' ? numberOfPage : 0}
+              onChange={handleSliderChange}
+              onMouseUp={setValueToArray}
+              aria-labelledby="input-slider"
+            />
+
+
+          </FormGroup>
+        </FormControl>
+      </CardContent>
+    </Card>
   )
 }
 

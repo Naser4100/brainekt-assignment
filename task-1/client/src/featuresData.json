@@ -1,0 +1,170 @@
+{
+  "blogFunction": {
+    "name": "Blog Functionality",
+    "price": 250
+  },
+  "numberOfPage": {
+    "name": "Number of page",
+    "price": 150
+  },
+  "multipleLanguage": {
+    "name": "Multiple Language",
+    "price": 170
+  },
+  "optimizeAndSpeed": {
+    "name": "Optimize and speed",
+    "price": 400
+  },
+  "databaseIntegration": {
+    "name": "Database integration",
+    "price": 660
+  },
+  "ecommerceFunctionality": {
+    "name": "Ecommerce Functionality",
+    "price": 900
+  },
+  "avgEstimatedClicks": {
+    "name": "Avg Estimated Clicks per month",
+    "price": 100
+  },
+  "emailPasswordLogin": {
+    "name": "Email/Password login",
+    "price": 190
+  },
+  "socialLogin": {
+    "name": "Social login",
+    "price": 180
+  },
+  "dashboard": {
+    "name": "Dashboard",
+    "price": 580
+  },
+  "userProfile": {
+    "name": "User profile",
+    "price": 130
+  },
+  "reviewRating": {
+    "name": "Reviews/Rating",
+    "price": 100
+  },
+  "messagingSystem": {
+    "name": "Messaging system",
+    "price": 240
+  },
+  "searchFeature": {
+    "name": "Search feature",
+    "price": 260
+  },
+  "gallery": {
+    "name": "Gallery photos/videos",
+    "price": 420
+  },
+  "calendar": {
+    "name": "Calendar",
+    "price": 340
+  },
+
+
+  "booking": {
+    "name": "Booking",
+    "price": 460
+  },
+  "map": {
+    "name": "Map",
+    "price": 450
+  },
+  "geoLocation": {
+    "name": "Geo Location",
+    "price": 250
+  },
+  "email": {
+    "name": "Email",
+    "price": 150
+  },
+  "pushNotification": {
+    "name": "Push notification",
+    "price": 200
+  },
+  "socialSharing": {
+    "name": "Social sharing",
+    "price": 200
+  },
+  "forum": {
+    "name": "Forum",
+    "price": 150
+  },
+  "comments": {
+    "name": "Comments",
+    "price": 150
+  },
+  "shoppingCart": {
+    "name": "Shopping cart",
+    "price": 250
+  },
+  "paymentProcess": {
+    "name": "Payment process",
+    "price": 500
+  },
+  "membershipSubscription": {
+    "name": "Memberships or Subscription",
+    "price": 450
+  },
+  "apiIntegration": {
+    "name": "APIs integration",
+    "price": 400
+  },
+  "3rdPartyApiIntegration": {
+    "name": "3rd party API Integration",
+    "price": 300
+  },
+  "design": {
+    "name": "Design",
+    "price": 200
+  },
+  "uxui": {
+    "name": "Unique UI/UX design",
+    "price": 300
+  },
+  "responsiveDesign": {
+    "name": "Responsive design",
+    "price": 150
+  },
+  "cms": {
+    "name": "Content management system",
+    "price": 350
+  },
+  "adminMultiLanguage": {
+    "name": "Multi-language",
+    "price": 200
+  },
+  "moderationAndApproval": {
+    "name": "Moderation and approval",
+    "price": 250
+  },
+  "reportingAnalyst": {
+    "name": "Reporting Analyst",
+    "price": 500
+  },
+  "wishList": {
+    "name": "WishList",
+    "price": 400
+  },
+
+  "faq": {
+    "name": "FAQ",
+    "price": 120
+  },
+  "couponCard": {
+    "name": "Coupon card",
+    "price": 320
+  },
+  "chatBotLive": {
+    "name": "ChatBotLive",
+    "price": 7500
+  },
+
+  "videoStreaming": {
+    "name": "Video Streaming",
+    "price": 800
+  }
+}
