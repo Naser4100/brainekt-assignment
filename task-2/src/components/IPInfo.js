@@ -10,16 +10,11 @@ import { getIpAction } from '../redux/actions/utilityAction'
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Link,
   Chip
 } from '@material-ui/core';
 
 // Local component
 import Title from './common/Title';
-
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 const useStyles = makeStyles({
   depositContext: {
@@ -56,10 +51,11 @@ const IPInfo = () => {
       <Typography color="textSecondary">
         <strong>Available ports:</strong> {ipInfo&& ipInfo.ports.map((port, i) => (
           <Chip
+          color="primary"
+          size="small"
           key={i}
           className={classes.chip}
           label={port}
-          variant="outlined"
         />
         ))}
       </Typography>
@@ -83,13 +79,6 @@ const IPInfo = () => {
       <Typography color="textSecondary" className={classes.depositContext}>
       <strong>ISP:</strong> {ipInfo&& ipInfo.isp}
       </Typography>
-
-      
-      <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
-      </div>
     </React.Fragment>
   );
 }

@@ -31,6 +31,9 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import IPInfo from '../IPInfo';
+import APIStatus from '../APIStatus';
+import HeaderInfo from '../HeaderInfo';
+import DNSResolve from '../DNSResolve';
 
 // Method for footer copyright info
 const Copyright = () => {
@@ -123,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 250,
   },
 }));
 
@@ -137,6 +140,8 @@ const Dashboard = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // This below line used for multiple style property in a single component
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -184,16 +189,37 @@ const Dashboard = () => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
+
+            {/*----------First Row Start----------- */}
             {/* IP information */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <IPInfo />
               </Paper>
             </Grid>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+
+            {/* API Status */}
+            <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                <APIStatus />
+              </Paper>
+            </Grid>
+
+            {/* Header info */}
+            <Grid item xs={12} md={4} lg={3}>
+              <Paper className={fixedHeightPaper}>
+                <HeaderInfo />
+              </Paper>
+            </Grid>
+
+            {/*----------First Row End----------- */}
+
+
+            {/*----------Second Row Start----------- */}
+            {/* Chart */}
+            <Grid item xs={12} md={4} lg={3}>
+              <Paper className={fixedHeightPaper}>
+                <DNSResolve />
               </Paper>
             </Grid>
             {/* Recent Deposits */}
@@ -202,13 +228,22 @@ const Dashboard = () => {
                 <Deposits />
               </Paper>
             </Grid>
+
+            {/*----------Second Row End----------- */}
+
+
+            {/*----------Third Row Start----------- */}
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
               </Paper>
             </Grid>
+
+            {/*----------Third Row End----------- */}
+
           </Grid>
+
           <Box pt={4}>
             <Copyright />
           </Box>
