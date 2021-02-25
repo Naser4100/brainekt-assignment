@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
   Slider
 } from '@material-ui/core';
+
+// Cost context import for getting const context data
+import CostContext from '../../context/costContext/costContext';
+
 
 const useStyles = makeStyles({
   root: {
@@ -35,8 +39,10 @@ const useStyles = makeStyles({
 //   return marks.findIndex((mark) => mark.value === value) + 1;
 // }
 
-const SliderComponent = ({marksProps, sliderTitle, onChange,onMouseUp, max, id}) => {
+const SliderComponent = ({marksProps, sliderTitle, min, max, name}) => {
   const classes = useStyles();
+
+  const { addFeatureFromSlider } = useContext(CostContext)
 
   const marks = marksProps.map((mark) => {
     return {
@@ -49,15 +55,19 @@ const SliderComponent = ({marksProps, sliderTitle, onChange,onMouseUp, max, id})
     return `${value}`;
   }
 
-  let arr;
-  
+  let obj
   const valueLabelFormat = (value) => {
+
     const name = marks.findIndex((mark) => mark.value === value);
-    arr = { id: marks[name].value, featureName: marks[name].label, featurePrice: marks[name].value };
-    console.log(arr);
+      obj = { id: sliderTitle.replace(/\s/g, ""), featureName: sliderTitle, featurePrice: marks[name].value };
+    
     return marks.findIndex((mark) => mark.value === value) + 1;
   }
-
+  
+  const submit = () =>{
+    addFeatureFromSlider(obj)
+        console.log(obj)
+  }
 
   return (
     <div className={classes.root}>
@@ -74,9 +84,7 @@ const SliderComponent = ({marksProps, sliderTitle, onChange,onMouseUp, max, id})
         step={null}
         valueLabelDisplay="auto"
         marks={marks}
-        // onChange={onChange}
-        // onClick={valueLabelFormat}
-        // onMouseUp={onMouseUpHandler}
+        onClick={submit}
       />
     </div>
   );
