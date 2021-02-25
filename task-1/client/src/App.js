@@ -3,12 +3,14 @@ import React from 'react'
 import {
   Container,
   Grid,
-  CssBaseline
+  CssBaseline,
+  Paper
 } from '@material-ui/core';
 
 // Component files
 import FeatureList from './components/FeatureList';
 import Cost from './components/Cost';
+import UserForm from './components/UserForm';
 import AppBarComp from './components/Layout/AppBarComp';
 
 
@@ -29,7 +31,10 @@ const App = () => {
               <Grid container>
                 <Grid item xs>
                   {/* Feature list component */}
-                  <FeatureList/>
+                  <Paper style={{padding: '1rem'}} elevation={3}>
+                    <UserForm/>
+                    <FeatureList/>
+                  </Paper>
                 </Grid>
               </Grid>
             </Grid>
