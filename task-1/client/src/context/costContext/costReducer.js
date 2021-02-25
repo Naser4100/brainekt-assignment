@@ -20,13 +20,12 @@ const costReducer =  (state, action) => {
                         featurePrice: +action.payload.featurePrice,
                       }
                     ],
-
-        // featureList: [...state.featureList, state.featureList.filter((feature) => feature.id !== action.payload.id ? action.payload : feature)] 
         }
+      // When new data pushed to featureList array this will re-calculate the total cost
     case RECALCULATE_PRICE:
       return {
         ...state,
-        totalCost: state.featureList.reduce((a, p) => p.featurePrice + a, 0)
+        totalCost: state.featureList.reduce((acc, curr) => curr.featurePrice + acc, 0)
       };
     default:
       return state

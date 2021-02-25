@@ -1,4 +1,4 @@
-
+// Library import statement
 import {
   Typography,
   Card,
@@ -7,8 +7,10 @@ import {
   FormGroup
 } from '@material-ui/core';
 
+// makeStyle uses for using custom supported CSS to the component
 import { makeStyles } from '@material-ui/core/styles';
 
+// Custom CSS
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -25,6 +27,7 @@ const CardLayout = (props) => {
 
   const classes = useStyles();
   return (
+    // Using the custom CSS 
     <Card variant='outlined' className={classes.card}>
       <CardContent>
 

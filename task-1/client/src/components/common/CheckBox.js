@@ -1,10 +1,13 @@
+// Library import statement
 import {
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core';
 
+// Main functional component
 const CheckBox = (props) => {
 
+  // Destructuring props value passed to this component
   const {
     handleInputChange,
     id,
@@ -18,8 +21,10 @@ const CheckBox = (props) => {
       <FormControlLabel
         control={
           <Checkbox
+            style={{color: 'orange'}}
             id={id}
             value={value}
+            color='orange'
             onChange={handleInputChange}
             name={name}
           />
