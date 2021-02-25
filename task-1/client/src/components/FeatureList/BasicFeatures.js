@@ -208,7 +208,6 @@ const BasicFeatures = ({ featureData }) => {
     setBasicFeatures({
       sliderData: newValue
     });
-    console.log(event);
     // addFeature({id: event.target.id, featureName: event.target.name, featurePrice: event.target.value});
   };
 
@@ -232,8 +231,8 @@ const BasicFeatures = ({ featureData }) => {
         id='ecommerce_functionality'
         name={featureData.numberOfPage.name}
         value={typeof numberOfPage === 'number' ? numberOfPage : 0}
-        onChange={handleSliderChange}
-        onMouseUp={setValueToArray}
+        
+        onMouseUp={(e) => console.log(e)}
         aria-labelledby="input-slider"
       />
 

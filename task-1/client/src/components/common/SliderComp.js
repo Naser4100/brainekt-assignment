@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 //   return marks.findIndex((mark) => mark.value === value) + 1;
 // }
 
-const SliderComponent = ({marksProps, sliderTitle, onChange, max, onMouseUp, id}) => {
+const SliderComponent = ({marksProps, sliderTitle, onChange,onMouseUp, max, id}) => {
   const classes = useStyles();
 
   const marks = marksProps.map((mark) => {
@@ -46,12 +46,18 @@ const SliderComponent = ({marksProps, sliderTitle, onChange, max, onMouseUp, id}
   })
   
   function valueText(value) {
-    return `${value}°C`;
+    return `${value}`;
   }
+
+  let arr;
   
-  function valueLabelFormat(value) {
+  const valueLabelFormat = (value) => {
+    const name = marks.findIndex((mark) => mark.value === value);
+    arr = { id: marks[name].value, featureName: marks[name].label, featurePrice: marks[name].value };
+    console.log(arr);
     return marks.findIndex((mark) => mark.value === value) + 1;
   }
+
 
   return (
     <div className={classes.root}>
@@ -68,8 +74,9 @@ const SliderComponent = ({marksProps, sliderTitle, onChange, max, onMouseUp, id}
         step={null}
         valueLabelDisplay="auto"
         marks={marks}
-        onChange={onChange}
-        // onMouseUp={onMouseUp}
+        // onChange={onChange}
+        // onClick={valueLabelFormat}
+        // onMouseUp={onMouseUpHandler}
       />
     </div>
   );
