@@ -10,6 +10,8 @@ import Payment from './Payment';
 import APIIntegration from './APIIntegration';
 import Design from './Design';
 import Admin from './Admin';
+import CommonFeature from './CommonFeature';
+import SpecialFeature from './SpecialFeature';
 
 // UI-Feature data
 import featureData from '../../featuresData.json'
@@ -26,6 +28,8 @@ const index = () => {
       <APIIntegration featureData = {featureData}/>
       <Design featureData = {featureData}/>
       <Admin featureData = {featureData}/>
+      <CommonFeature featureData = {featureData}/>
+      <SpecialFeature featureData = {featureData}/>
     </div>
   )
 }

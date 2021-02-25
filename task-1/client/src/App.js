@@ -19,6 +19,7 @@ import CostState from './context/costContext/costState';
 
 // Main component
 const App = () => {
+
   return (
     <CostState>
       <AppBarComp/>

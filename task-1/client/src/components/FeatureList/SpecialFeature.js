@@ -10,7 +10,7 @@ import SliderComp from '../common/SliderComp';
 import CheckBox from '../common/CheckBox';
 
 // Main component function
-const Admin = ({ featureData }) => {
+const SpecialFeature = ({ featureData }) => {
   const { addFeature } = useContext(CostContext);
 
   const handleInputChange = (event) => {
@@ -18,39 +18,24 @@ const Admin = ({ featureData }) => {
   }
 
   return (
-    <CardLayout sectionTitle = 'Admin'>
+    <CardLayout sectionTitle = 'Special Feature'>
       
       <SliderComp
-        sliderTitle = {featureData.cms.name}
-        max={650}
+        sliderTitle = {featureData.chatBotLive.name}
+        max={400}
         marksProps = {
           [
             {label: 'None', value: 0},
-            {label: 'Basic', value: 250},
+            {label: 'Basic', value: 230},
             {label: 'Advanced', value: 400},
-            {label: 'Enterprise', value: 650}
           ]
         }
         />
 
       <CheckBox
-        id='multi_language'
-        name={featureData.adminMultiLanguage.name}
-        value={featureData.adminMultiLanguage.price}
-        handleInputChange = {handleInputChange}
-      />
-
-      <CheckBox
-        id='moderation_and_approval'
-        name={featureData.moderationAndApproval.name}
-        value={featureData.moderationAndApproval.price}
-        handleInputChange = {handleInputChange}
-      />
-
-      <CheckBox
-        id='reporting_analyst'
-        name={featureData.reportingAnalyst.name}
-        value={featureData.reportingAnalyst.price}
+        id='video_streaming'
+        name={featureData.videoStreaming.name}
+        value={featureData.videoStreaming.price}
         handleInputChange = {handleInputChange}
       />
 
@@ -58,4 +43,4 @@ const Admin = ({ featureData }) => {
   )
 }
 
-export default Admin;
+export default SpecialFeature;

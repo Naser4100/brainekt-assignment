@@ -1,6 +1,7 @@
 import {
   ADD_FEATURE,
-  RECALCULATE_PRICE
+  RECALCULATE_PRICE,
+  ADD_FEATURE_FROM_SLIDER,
 } from '../types'
 
 const costReducer =  (state, action) => {
@@ -21,7 +22,27 @@ const costReducer =  (state, action) => {
                       }
                     ],
         }
-      // When new data pushed to featureList array this will re-calculate the total cost
+    case ADD_FEATURE_FROM_SLIDER:
+      let updateFeatuer = state.featureList.findIndex(f => f.id === action.payload.id);
+      if(updateFeatuer >= 0){
+        //state.featureList.filter(feature => feature.id !== action.payload.id)
+        state.featureList[updateFeatuer].featurePrice = action.payload.featurePrice
+      }
+
+      console.log(state.featureList[updateFeatuer]);
+      return {
+        ...state,
+        featureList: state.featureList.some(feature => feature.id === action.payload.id) ?
+                      [...state.featureList, state.featureList[updateFeatuer]]:
+                      [...state.featureList,
+                        {
+                          id: action.payload.id,
+                          featureName: action.payload.featureName,
+                          featurePrice: +action.payload.featurePrice,
+                        }
+                      ]
+      }
+    // When new data pushed to featureList array this will re-calculate the total cost
     case RECALCULATE_PRICE:
       return {
         ...state,
