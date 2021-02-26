@@ -1,5 +1,7 @@
-// Library 
+// Library/package imports
 import React from 'react'
+
+// Material-ui imports
 import {
   Container,
   Grid,

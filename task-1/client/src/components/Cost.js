@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+// Import react hooks
+import { useContext } from 'react';
 
 // Material-UI library
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,29 +30,37 @@ const useStyles = makeStyles({
 const Cost = () => {
   const classes = useStyles();
 
-  const { featureList, totalCost } = useContext(CostContext);
+  // Destructuring featureList state
+  const { featureList } = useContext(CostContext);
 
-  let newData = featureList.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
-  const price = newData.reduce((acc, curr) => curr.featurePrice + acc, 0);
+  // Removing duplicate feature from featureList
+  let newData = featureList.filter((feature, index, array)=>array.findIndex(currElem=>(currElem.id === feature.id))===index);
 
+  // Calculating total price for selected features
+  const totalPrice = newData.reduce((acc, curr) => curr.featurePrice + acc, 0);
+
+  // Generating rows based on the feature price that are greater than 0.
+  // because 0 means user is not interested to buy so, we don't want it to render in the table
+  // eslint-disable-next-line
   const rows = newData.map(row => {
     if(row.featurePrice > 0) {
       return (
         <TableRow key={row.id}>
         <TableCell>{row.featureName}</TableCell>
-        <TableCell colSpan={3}>{row.featurePrice}</TableCell>
+        <TableCell colSpan={3}>${row.featurePrice}</TableCell>
       </TableRow>
       );
     }
-  })
+  });
 
-  console.log(newData)
-  
   return (
 
     <Card className={classes.root}>
+
       <CardContent>
+
         <TableContainer >
+
           <Table aria-label="spanning table" >
             <TableHead>
               <TableRow>
@@ -62,22 +71,20 @@ const Cost = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {newData.length && newData.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>{row.featureName}</TableCell>
-                  <TableCell colSpan={3}>{row.featurePrice}</TableCell>
-                </TableRow>
-              ))} */}
-              {rows}
+
+              {rows&& rows}
 
               <TableRow>
                 <TableCell><strong>Total</strong></TableCell>
-                <TableCell><strong>{price}</strong></TableCell>
+                <TableCell><strong>${totalPrice}</strong></TableCell>
               </TableRow>
             </TableBody>
           </Table>
+
         </TableContainer>
+
       </CardContent>
+
     </Card>
   );
 }

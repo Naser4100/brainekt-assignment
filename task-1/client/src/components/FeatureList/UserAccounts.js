@@ -1,9 +1,3 @@
-// Library import statement
-import { useContext } from 'react';
-
-// Cost context import for getting const context data
-import CostContext from '../../context/costContext/costContext';
-
 // Reusable components
 import CheckBox from '../common/CheckBox';
 import CardLayout from '../common/CardLayout';
@@ -11,45 +5,46 @@ import SliderComp from '../common/SliderComp';
 
 // Main component function
 const UserAccount = ({ featureData }) => {
-  const { addFeature } = useContext(CostContext);
 
-  const handleInputChange = (event) => {
-    addFeature({id: event.target.id, featureName: event.target.name, featurePrice: event.target.value});
-  }
+  // Destructuring featureData
+  const {
+    dashboard,
+    userProfile,
+    reviewRating,
+    messagingSystem,
+    searchFeature,
+    gallery
+  } = featureData;
 
   return (
     <CardLayout sectionTitle = 'User Account'>
 
       <CheckBox
         id='dashboard'
-        name={featureData.dashboard.name}
-        value={featureData.dashboard.price}
-        handleInputChange = {handleInputChange}
+        name={dashboard.name}
+        value={dashboard.price}
       />
 
       <CheckBox
         id='userProfile'
-        name={featureData.userProfile.name}
-        value={featureData.userProfile.price}
-        handleInputChange = {handleInputChange}
+        name={userProfile.name}
+        value={userProfile.price}
       />
 
       <CheckBox
         id='review_rating'
-        name={featureData.reviewRating.name}
-        value={featureData.reviewRating.price}
-        handleInputChange = {handleInputChange}
+        name={reviewRating.name}
+        value={reviewRating.price}
       />
 
       <CheckBox
         id='messaging_system'
-        name={featureData.messagingSystem.name}
-        value={featureData.messagingSystem.price}
-        handleInputChange = {handleInputChange}
+        name={messagingSystem.name}
+        value={messagingSystem.price}
       />
       
       <SliderComp
-        sliderTitle = {featureData.searchFeature.name}
+        sliderTitle = {searchFeature.name}
         marksProps = {
           [
             {label: 'None', value: 0},
@@ -61,13 +56,12 @@ const UserAccount = ({ featureData }) => {
 
       <CheckBox
         id='gallery_and_photo'
-        name={featureData.gallery.name}
-        value={featureData.gallery.price}
-        handleInputChange = {handleInputChange}
+        name={gallery.name}
+        value={gallery.price}
       />
 
     </CardLayout>
-  )
+  );
 }
 
 export default UserAccount;
