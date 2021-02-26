@@ -1,7 +1,10 @@
-import React from 'react';
+// Library/Package imports
+import React, { useState } from 'react';
 
-
+// This package used for multiple style property in a single component
 import clsx from 'clsx';
+
+// Material-UI imports
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CssBaseline,
@@ -25,15 +28,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-// Components
-import { mainListItems, secondaryListItems } from './ListItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+// Local Components
+import { mainListItems } from './ListItems';
 import IPInfo from '../IPInfo';
 import APIStatus from '../APIStatus';
 import HeaderInfo from '../HeaderInfo';
 import DNSResolve from '../DNSResolve';
+import DNSReverse from '../DNSReverse';
 
 // Method for footer copyright info
 const Copyright = () => {
@@ -51,6 +52,7 @@ const Copyright = () => {
 
 const drawerWidth = 240;
 
+// Custom CSS styling
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -132,11 +134,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
 
+  // Custom CSS
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+
+  // Drawer state
+  const [open, setOpen] = useState(true);
+
+  // Handle drawer open 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
+  // Handle drawer close
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -162,7 +171,7 @@ const Dashboard = () => {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -183,8 +192,8 @@ const Dashboard = () => {
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
@@ -205,42 +214,32 @@ const Dashboard = () => {
               </Paper>
             </Grid>
 
+            {/*----------First Row End----------- */}
+
+
+            {/*----------Second Row Start----------- */}
             {/* Header info */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={4} lg={5}>
               <Paper className={fixedHeightPaper}>
                 <HeaderInfo />
               </Paper>
             </Grid>
 
-            {/*----------First Row End----------- */}
-
-
-            {/*----------Second Row Start----------- */}
-            {/* Chart */}
+            {/* DNS Resolve */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <DNSResolve />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
+
+            {/* DNS Reverse */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <DNSReverse />
               </Paper>
             </Grid>
 
             {/*----------Second Row End----------- */}
-
-
-            {/*----------Third Row Start----------- */}
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
-
-            {/*----------Third Row End----------- */}
 
           </Grid>
 

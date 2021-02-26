@@ -2,15 +2,15 @@ import {
   GET_IP,
   GET_HTTP_HEADERS,
   GET_API_STATUS,
-  GET_ACCOUNT_INFO,
   RESOLVE_DNS,
+  REVERSE_DNS,
 } from '../types'
 const initialState = {
   ip: null,
   headers: null,
   apiStatus: null,
-  accountInfo: null,
   resolvedIP: {},
+  reverseDNS: {},
 
 };
 const utilityReducer = (state = initialState, action) => {
@@ -32,15 +32,15 @@ const utilityReducer = (state = initialState, action) => {
         ...state,
         apiStatus: action.payload
       }
-    case GET_ACCOUNT_INFO:
-      return {
-        ...state,
-        accountInfo: action.payload
-      }
     case RESOLVE_DNS:
       return {
         ...state,
         resolvedIP: action.payload
+      }
+    case REVERSE_DNS:
+      return {
+        ...state,
+        reverseDNS: action.payload
       }
     default:
       return state;

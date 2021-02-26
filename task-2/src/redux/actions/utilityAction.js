@@ -2,18 +2,18 @@ import {
   GET_IP,
   GET_API_STATUS,
   GET_HTTP_HEADERS,
-  GET_ACCOUNT_INFO,
+  REVERSE_DNS,
   RESOLVE_DNS,
 } from '../types'
 import {
   getIpAPI,
   getAPIStatusAPI,
-  getAccountInfoAPI,
+  reverseDNSAPI,
   getHTTPHeaderAPI,
   resolveDNSAPI,
 } from '../../API/utilityAPI';
 
-// Action creator methods
+// Action creator methods from here
 // Get IP action
 export const getIpAction = () => async(dispatch) => {
 
@@ -37,16 +37,15 @@ export const getAPIStatusAction = () => async(dispatch) => {
 } 
 
 // Get account info action
-export const getAccountInfoAction = () => async(dispatch) => {
+export const reverseDNSAction = (ip) => async(dispatch) => {
 
   try {
-    const response  = await getAccountInfoAPI();
-    dispatch({ type: GET_ACCOUNT_INFO, payload: response })
+    const response  = await reverseDNSAPI(ip);
+    dispatch({ type: REVERSE_DNS, payload: response })
   } catch (error) {
     console.log(error);
   }
 } 
-
 
 // Get HTTP header
 export const getHTTPHeaderAction = () => async(dispatch) => {

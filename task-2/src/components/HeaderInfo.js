@@ -1,42 +1,40 @@
+// Library/Package import
 import React, { useEffect } from 'react';
 
+// React-redux hooks import
 import { useDispatch, useSelector } from 'react-redux';
 
 // Action files
-import { getAccountInfoAction, getHTTPHeaderAction } from '../redux/actions/utilityAction'
+import { getHTTPHeaderAction } from '../redux/actions/utilityAction'
 
 // Material-ui package
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Typography,
-  Chip
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
-// Local component
+// Reusable Local component
 import Title from './common/Title';
+import ProgressBarCircle from './common/ProgressBarCircle';
 
-const useStyles = makeStyles({
-  depositContext: {
-    
-  },
-  chip: {
-    margin: '2px'
-  }
-});
 
 // Component function
 const HeaderInfo = () => {
 
-  const dispatch = useDispatch(); // This hooks dispatches an action for changing global state
-  const headers = useSelector((state) => state.utilityState.headers); // Same thing as above. I'm extracting different value from another state
+  // This hooks dispatches an action for changing global state
+  const dispatch = useDispatch(); 
+
+  // This hooks extract specific state from global redux store
+  const headers = useSelector((state) => state.utilityState.headers);
 
   useEffect(() => {
-    dispatch(getHTTPHeaderAction()); // Dispatching and action for getting ip and change global state according to the API response
+    // Dispatching an action for getting HTTP-Header and add that HTTP-Header to global state
+    dispatch(getHTTPHeaderAction());
+
+    // Put headers for the dependency so that whenever headers update this component will re-render and change will appear
+    // eslint-disable-next-line
   }, [headers])
 
-  const classes = useStyles();
   return (
-    <React.Fragment>
+    headers ? (
+      <React.Fragment>
       <Title>Header</Title>
 
       {/* Ip */}
@@ -57,6 +55,7 @@ const HeaderInfo = () => {
       </Typography>
 
     </React.Fragment>
+    ) : <ProgressBarCircle/>
   );
 }
 export default HeaderInfo;
