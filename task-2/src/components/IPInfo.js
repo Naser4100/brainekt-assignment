@@ -10,16 +10,14 @@ import { getIpAction } from '../redux/actions/utilityAction'
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Chip
+  Chip,
 } from '@material-ui/core';
 
 // Local component
 import Title from './common/Title';
+import ProgressBarCircle from './common/ProgressBarCircle';
 
 const useStyles = makeStyles({
-  depositContext: {
-    
-  },
   chip: {
     margin: '2px'
   }
@@ -27,19 +25,33 @@ const useStyles = makeStyles({
 
 // Component function
 const IPInfo = () => {
+  const classes = useStyles();
 
-  const dispatch = useDispatch(); // This hooks dispatches an action for changing global state
-  const ipInfo = useSelector((state) => state.ipState.ipInfo); // This hooks extract specific state from global redux store
-  const ip = useSelector((state) => state.utilityState.ip); // Same thing as above. I'm extracting different value from another state
+   // This hooks dispatches an action for changing global state
+  const dispatch = useDispatch();
+
+  // This hooks extract specific state from global redux store
+  const ipInfo = useSelector((state) => state.ipState.ipInfo);
+  
+  // Same thing as above. I'm extracting different value from another state
+  const ip = useSelector((state) => state.utilityState.ip); 
 
   useEffect(() => {
-    dispatch(getIpAction()); // Dispatching and action for getting ip and change global state according to the API response
-    dispatch(getIPInfoAction(ip)); // Dispatching another action for getting ip information and change global state according to the API response
+     // Dispatching and action for getting ip and change global state according to the API response
+    dispatch(getIpAction());
+
+    // Dispatching another action for getting IP information and change global state according to the API response
+    dispatch(getIPInfoAction(ip)); 
+
+    // IP state is added to this dependency array so 
+    // if it's value changes this trigger re-rendering of this components
+    // eslint-disable-next-line
   }, [ip])
 
-  const classes = useStyles();
+
   return (
-    <React.Fragment>
+    ip ? (
+      <React.Fragment>
       <Title>IP information</Title>
 
       {/* Ip */}
@@ -80,6 +92,7 @@ const IPInfo = () => {
       <strong>ISP:</strong> {ipInfo&& ipInfo.isp}
       </Typography>
     </React.Fragment>
+    ) :  <ProgressBarCircle/>
   );
 }
 export default IPInfo;

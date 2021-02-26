@@ -1,6 +1,9 @@
+// Library/Package imports
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import thunk from "redux-thunk";
+
+// Import root-reducer that we've created
 import rootReducer from "./reducers";
 
 const middleware = [thunk];

@@ -2,7 +2,7 @@
 // So that, we don't need to set baseURL in our every api file
 import axios from './axiosConfig';
 
-// Get IP address
+// Get IP address 
 export const getIpAPI = async () => {
   const response = await axios.get(`/tools/myip?key=${process.env.REACT_APP_API_KEY}`);
   return response.data;
@@ -14,19 +14,19 @@ export const getAPIStatusAPI = async () => {
   return response.data;
 }
 
-// Get API status
-export const getAccountInfoAPI = async () => {
-  const response = await axios.get(`/account/profile?key=${process.env.REACT_APP_API_KEY}`);
+// This API method will return reverse DNS of IP we will be pass in here
+export const reverseDNSAPI = async (ip) => {
+  const response = await axios.get(`/dns/reverse?ips=${ip}&key=${process.env.REACT_APP_API_KEY}`);
   return response.data;
 }
 
-// Get API status
+// Get HTTP header 
 export const getHTTPHeaderAPI = async () => {
   const response = await axios.get(`/tools/httpheaders?key=${process.env.REACT_APP_API_KEY}`);
   return response.data;
 }
 
-// Get API status
+// This will resolve DNS of passed hostname to this method
 export const resolveDNSAPI = async (hostname) => {
   const response = await axios.get(`dns/resolve?hostnames=${hostname}&key=${process.env.REACT_APP_API_KEY}`);
   return response.data;

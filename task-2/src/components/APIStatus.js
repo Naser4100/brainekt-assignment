@@ -1,3 +1,4 @@
+// Library/Package imports
 import React, { useEffect } from 'react';
 
 // Redux hooks library for extracting state and dispatching action
@@ -10,37 +11,40 @@ import { getAPIStatusAction } from '../redux/actions/utilityAction';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Chip
 } from '@material-ui/core';
 
 // Reusable common component
 import Title from './common/Title';
+import ProgressBarCircle from './common/ProgressBarCircle';
 
 // Custom CSS style
 const useStyles = makeStyles({
-  depositContext: {
-    
-  },
   chip: {
     margin: '2px'
   }
 });
 
-// Component function
+// Component main function
 const APIStatus = () => {
-
-  const dispatch = useDispatch(); // This hooks dispatches an action for changing global state
-  const apiStatus = useSelector((state) => state.utilityState.apiStatus); // Same thing as above. I'm extracting different value from another state
-
-  useEffect(() => {
-    dispatch(getAPIStatusAction()); // Dispatching and action for getting ip and change global state according to the API response
-    // Dispatching another action for getting ip information and change global state according to the API response
-  }, [apiStatus])// Put ip for the dependency so that whenever ip update this component will re-render and change will appear
-
   const classes = useStyles();
 
+  // This hooks dispatches an action for changing global state
+  const dispatch = useDispatch();
+
+  // This hooks extract specific state from global redux store
+  const apiStatus = useSelector((state) => state.utilityState.apiStatus);
+
+  useEffect(() => {
+    // Dispatching an action for getting API Status and add that this to global state
+    dispatch(getAPIStatusAction());
+
+    // Put apiStatus for the dependency so that whenever apiStatus update this component will re-render and change will appear
+    // eslint-disable-next-line
+  }, [apiStatus])
+
   return (
-    <React.Fragment>
+    apiStatus ? (
+      <React.Fragment>
       <Title>API status</Title>
       {/* API plan */}
       <Typography color="textSecondary" className={classes.depositContext}>
@@ -61,6 +65,7 @@ const APIStatus = () => {
       </Typography>
 
     </React.Fragment>
+    ) : <ProgressBarCircle/>
   );
 }
 export default APIStatus;
