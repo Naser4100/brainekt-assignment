@@ -1,36 +1,39 @@
 import React,{ useReducer } from 'react';
 
+// Import axios for making HTTP request to the server
 import axios from 'axios';
 
-
-import CostContext from './costContext';
-import CostReducer from './costReducer';
-
+// Importing Action type
 import {
   ADD_FEATURE,
-  RECALCULATE_PRICE,
   ADD_FEATURE_FROM_SLIDER,
 } from '../types'
 
+// Context files
+import CostContext from './costContext';
+
+// reducer files
+import CostReducer from './costReducer';
+
+
+// Main State function
 const CostState = (props) => {
 
-  // Initial State for the feature list array
+  // Initial State of cost context
   const initialState={
     featureList: [],
-    totalCost: 0
   }
 
   const [state, dispatch] = useReducer(CostReducer, initialState)
 
   // Add new feature to featureList array
   const addFeature = async data => {
-    console.log(state.featureList);
     try{
+      // Dispatching and action that will change global context data
       dispatch({
-      type: ADD_FEATURE,
-      payload: data
+        type: ADD_FEATURE, // Action type that define what need to be changed
+        payload: data // New data that will added to context 
       });
-      reCalculateCost();
     }catch (err) {  
       console.log(err);
     }
@@ -38,35 +41,22 @@ const CostState = (props) => {
 
     // Add new feature to featureList array from slider
     const addFeatureFromSlider = async data => {
-      console.log(state.featureList);
       try{
         dispatch({
-        type: ADD_FEATURE_FROM_SLIDER,
-        payload: data
+          type: ADD_FEATURE_FROM_SLIDER, // Action type that define what need to be changed
+          payload: data // New data that will added to context
         });
-        reCalculateCost();
       }catch (err) {  
         console.log(err);
       }
     }
 
-   // Add new feature to featureList array
-  const reCalculateCost = async () => {
-    try{
-      dispatch({
-      type: RECALCULATE_PRICE,
-      });
-    }catch (err) {  
-      console.log(err);
-    }
-  }
-
-  // Add new feature to featureList array
+  // Sending email, this will also save user data
   const sendEmail = async (userFormData) => {
     const config={ header:{ 'Content-Type':'application/json' }} // => Configure axios for sending JSON data
     try{
       const res = await axios.post(`/api/mail/send`, userFormData, config) // => Sending request
-      alert(res.data.message);
+      alert(res.data.message); // Displaying the response message
     }catch (err) {  
       console.log(err);
     }
@@ -74,15 +64,20 @@ const CostState = (props) => {
 
   return (
     <CostContext.Provider value={{
+      // <-- Providing state
       featureList: state.featureList,
       totalCost: state.totalCost,
+      // -->
+
+      // <-- Providing actions (function)
       addFeature,
       addFeatureFromSlider,
-      reCalculateCost,
       sendEmail,
+      // -->
   }}>
     {props.children}
   </CostContext.Provider >
-  )
+  );
 }
+
 export default CostState;

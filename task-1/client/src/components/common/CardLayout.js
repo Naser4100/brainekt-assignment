@@ -1,4 +1,4 @@
-// Library import statement
+// Library/package import statement
 import {
   Typography,
   Card,
@@ -23,14 +23,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// Component main function
 const CardLayout = (props) => {
 
   const classes = useStyles();
+
   return (
-    // Using the custom CSS 
+                              // Using the custom CSS 
     <Card variant='outlined' className={classes.card}>
       <CardContent>
 
+        {/* Displaying section title */}
         <Typography variant="h5" component="h2">
           {props.sectionTitle}
         </Typography>

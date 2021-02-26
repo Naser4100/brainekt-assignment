@@ -1,9 +1,3 @@
-// Library import statement
-import { useContext } from 'react';
-
-// Cost context import for getting const context data
-import CostContext from '../../context/costContext/costContext';
-
 // Reusable components
 import CheckBox from '../common/CheckBox';
 import CardLayout from '../common/CardLayout';
@@ -11,23 +5,26 @@ import SliderComp from '../common/SliderComp';
 
 // Main component function
 const LocationAndDates = ({ featureData }) => {
-  const { addFeature } = useContext(CostContext);
 
-  const handleInputChange = (event) => {
-    addFeature({id: event.target.id, featureName: event.target.name, featurePrice: event.target.value});
-  }
+  // Destructuring featureData
+  const {
+    calendar,
+    booking,
+    map,
+    geoLocation,
+  } = featureData;
 
   return (
     <CardLayout sectionTitle = 'Location and Dates'>
+
       <CheckBox
         id='calender'
-        name={featureData.calendar.name}
-        value={featureData.calendar.price}
-        handleInputChange = {handleInputChange}
+        name={calendar.name}
+        value={calendar.price}
       />
 
       <SliderComp
-        sliderTitle = {featureData.booking.name}
+        sliderTitle = {booking.name}
         marksProps = {
           [
             {label: 'None', value: 0},
@@ -40,20 +37,18 @@ const LocationAndDates = ({ featureData }) => {
 
       <CheckBox
         id='map'
-        name={featureData.map.name}
-        value={featureData.map.price}
-        handleInputChange = {handleInputChange}
+        name={map.name}
+        value={map.price}
       />
 
       <CheckBox
         id='geo_location'
-        name={featureData.geoLocation.name}
-        value={featureData.geoLocation.price}
-        handleInputChange = {handleInputChange}
+        name={geoLocation.name}
+        value={geoLocation.price}
       />
 
     </CardLayout>
-  )
+  );
 }
 
 export default LocationAndDates;

@@ -13,7 +13,7 @@ import Admin from './Admin';
 import CommonFeature from './CommonFeature';
 import SpecialFeature from './SpecialFeature';
 
-// UI-Feature data
+// UI-Feature JSON data
 import featureData from '../../featuresData.json'
 
 const index = () => {

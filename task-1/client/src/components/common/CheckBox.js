@@ -1,19 +1,34 @@
-// Library import statement
+// Library/package import statement
+import { useContext } from 'react'
 import {
   FormControlLabel,
   Checkbox,
 } from '@material-ui/core';
 
-// Main functional component
+// Cost context import for getting const context data
+import CostContext from '../../context/costContext/costContext';
+
+// Component main function
 const CheckBox = (props) => {
 
-  // Destructuring props value passed to this component
+  // Destructuring props value that passed to this component
   const {
-    handleInputChange,
     id,
     value,
     name
   } = props;
+
+    // Destructuring const context and extract addFeature action
+    const { addFeature } = useContext(CostContext);
+
+    const handleInputChange = (event) => {
+      // Calling the action to add new feature data to global state
+      addFeature({
+        id: event.target.id,
+        featureName: event.target.name,
+        featurePrice: event.target.value
+      });
+    }
 
   return (
     <div>
@@ -21,10 +36,9 @@ const CheckBox = (props) => {
       <FormControlLabel
         control={
           <Checkbox
-            style={{color: 'orange'}}
+            style={{color: 'orange'}} // <== Inline styling
             id={id}
             value={value}
-            color='orange'
             onChange={handleInputChange}
             name={name}
           />

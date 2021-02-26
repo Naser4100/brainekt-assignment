@@ -1,9 +1,3 @@
-// Library import statement
-import { useContext } from 'react';
-
-// Cost context import for getting const context data
-import CostContext from '../../context/costContext/costContext';
-
 // Reusable components
 import CheckBox from '../common/CheckBox';
 import CardLayout from '../common/CardLayout';
@@ -11,36 +5,36 @@ import NumberSlider from '../common/NumberSlider';
 
 // Main component function
 const Payment = ({ featureData }) => {
-  const { addFeature } = useContext(CostContext);
 
-  const handleInputChange = (event) => {
-    addFeature({id: event.target.id, featureName: event.target.name, featurePrice: event.target.value});
-  }
+  // Destructuring featureData
+  const {
+    shoppingCart,
+    paymentProcess,
+    membershipSubscription,
+  } = featureData;
 
   return (
     <CardLayout sectionTitle = 'Payment'>
 
       <CheckBox
         id='dashboard'
-        name={featureData.shoppingCart.name}
-        value={featureData.shoppingCart.price}
-        handleInputChange = {handleInputChange}
+        name={shoppingCart.name}
+        value={shoppingCart.price}
       />
 
       <CheckBox
         id='payment_process'
-        name={featureData.paymentProcess.name}
-        value={featureData.paymentProcess.price}
-        handleInputChange = {handleInputChange}
+        name={paymentProcess.name}
+        value={paymentProcess.price}
       />
 
       <NumberSlider
-        name={featureData.membershipSubscription.name}
-        sliderTitle={featureData.membershipSubscription.name}
+        name={membershipSubscription.name}
+        sliderTitle={membershipSubscription.name}
       />
 
     </CardLayout>
-  )
+  );
 }
 
 export default Payment;
