@@ -7,15 +7,15 @@ import UserModel from '../models/UserModel.js'
 export const emailSender = async (req, res) => {
   try {
     // Destructuring email from request body
-    const { email } = req.body;
+    const { email, name } = req.body;
 
     // message body that will be send
-    const message = `Hi there`;
+    const message = `Hi ${name}, This is a auto generated email from task-1 assignment`;
 
     // This method will send the mail
     await sendEmail({
       email: email,
-      subject: 'Website cost calculator',
+      subject: 'Task-1 pricing calculator',
       message,
     });
 
@@ -27,6 +27,6 @@ export const emailSender = async (req, res) => {
       user
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    res.status(400).json({ success: false, message: error.message });
   }
 };

@@ -29,7 +29,7 @@ const AppBarComp = () => {
       <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Website feature cost calculator
+            Task-1 pricing calculator
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

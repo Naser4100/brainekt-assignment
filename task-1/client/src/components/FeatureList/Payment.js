@@ -29,7 +29,10 @@ const Payment = ({ featureData }) => {
       />
 
       <NumberSlider
-        name={membershipSubscription.name}
+        min={0}
+        max={10}
+        step={1}
+        pricePerUnit={25}
         sliderTitle={membershipSubscription.name}
       />
 

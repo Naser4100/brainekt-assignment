@@ -1,39 +1,51 @@
-import React, { useState} from 'react';
+import React, { useContext } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
-  Slider
+  Slider,
 } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
+// Cost context import for getting const context data
+import CostContext from '../../context/costContext/costContext';
 
-const NumberSlider = ({name, sliderTitle}) => {
-  const classes = useStyles();
+const NumberSlider = ({step, sliderTitle, pricePerUnit, min, max}) => {
 
-  const [subscription, setSubscription] = useState(0);
+  // Extracting add feature Action(function) from context
+  const { addFeatureFromSlider } = useContext(CostContext);
 
-  const handleSliderChange = (event, newValue) => {
-    setSubscription(newValue);
-  };
+  // A variable for storing new feature object that is going be include in featureList array
+  let newFeatureObj;
+
+  // This function trigger when slider value change
+  const valueLabelFormat = (value) => {
+
+    // Structuring newFeatureObj for passing to the action function
+    newFeatureObj = { id: sliderTitle.replace(/\s/g, ""), featureName: sliderTitle, featurePrice: value * pricePerUnit };
+
+    // value for displaying on the tooltip
+    return value;
+  }
+
+    // Finally submit newFeature object the addFeatureFromSlider action
+  const onClickHandler = () => {
+    addFeatureFromSlider(newFeatureObj);
+  }
 
   return (
-    <div className={classes.root}>
+    <div>
       <Typography id="discrete-slider-restrict" gutterBottom>
         {sliderTitle}
       </Typography>
+
       <Slider
-        min={1}
-        max={10}
-        id='ecommerce_functionality'
-        name={name}
-        value={typeof subscription === 'number' ? subscription : 0}
-        onChange={handleSliderChange}
-        aria-labelledby="input-slider"
+        max={max}
+        min={min}
+        name='slider'
+        step={step}
+        defaultValue={0}
+        valueLabelFormat={valueLabelFormat}
+        valueLabelDisplay="auto"
+        onClick={onClickHandler}
       />
     </div>
   );

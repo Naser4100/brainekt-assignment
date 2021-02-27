@@ -25,6 +25,7 @@ const LocationAndDates = ({ featureData }) => {
 
       <SliderComp
         sliderTitle = {booking.name}
+        name='booking'
         marksProps = {
           [
             {label: 'None', value: 0},
@@ -33,7 +34,7 @@ const LocationAndDates = ({ featureData }) => {
             {label: 'Enterprise', value: 100}
           ]
           }
-        />
+      />
 
       <CheckBox
         id='map'
