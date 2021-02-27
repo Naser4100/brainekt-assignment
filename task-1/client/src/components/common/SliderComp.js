@@ -14,7 +14,7 @@ import CostContext from '../../context/costContext/costContext';
 // Custom CSS style
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 225,
   },
 });
 
@@ -33,11 +33,6 @@ const SliderComponent = ({ marksProps, sliderTitle, max }) => {
     }
   })
   
-  // This will show slider position in a tooltip 
-  const valueText = (value) =>{
-    return `${value}`;
-  }
-
   // A variable for storing new feature object that is going be include in featureList array
   let newFeatureObj;
 
@@ -56,7 +51,6 @@ const SliderComponent = ({ marksProps, sliderTitle, max }) => {
   // Finally submit newFeature object the addFeatureFromSlider action
   const onSubmitHandler = () =>{
     addFeatureFromSlider(newFeatureObj)
-      
   }
 
   return (
@@ -71,7 +65,6 @@ const SliderComponent = ({ marksProps, sliderTitle, max }) => {
         name='slider'
         defaultValue={0}
         valueLabelFormat={valueLabelFormat}
-        getAriaValueText={valueText}
         step={null}
         valueLabelDisplay="auto"
         marks={marks}

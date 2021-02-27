@@ -21,7 +21,10 @@ const BasicFeatures = ({ featureData }) => {
     <CardLayout sectionTitle = 'Basic Feature'>
 
       <NumberSlider
-        name={numberOfPage.name}
+        min={0}
+        step={5}
+        max={150}
+        pricePerUnit={12}
         sliderTitle={numberOfPage.name}
       />
 
@@ -38,10 +41,17 @@ const BasicFeatures = ({ featureData }) => {
 
       />
 
-      <NumberSlider
-        name={optimizeAndSpeed.name}
-        sliderTitle={optimizeAndSpeed.name}
-      />
+      <SliderComp
+        sliderTitle = {optimizeAndSpeed.name}
+        max={400}
+        marksProps = {
+          [
+            {label: 'None', value: 0},
+            {label: 'Basic', value: 200},
+            {label: 'Advanced', value: 400},
+          ]
+        }
+        />
 
       <SliderComp
         sliderTitle = {databaseIntegration.name}
@@ -69,7 +79,10 @@ const BasicFeatures = ({ featureData }) => {
       />
 
       <NumberSlider
-        name={avgEstimatedClicks.name}
+        min={100}
+        max={10000}
+        step={250}
+        pricePerUnit={0.10}
         sliderTitle={avgEstimatedClicks.name}
       />
 

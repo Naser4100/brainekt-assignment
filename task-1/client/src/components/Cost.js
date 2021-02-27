@@ -24,6 +24,10 @@ const useStyles = makeStyles({
     top: "4rem",
     minWidth: "275"
   },
+
+  container: {
+    maxHeight: 550,
+  },
 });
 
 // Main cost component
@@ -57,12 +61,12 @@ const Cost = () => {
 
     <Card className={classes.root}>
 
-      <CardContent>
+      <CardContent className={classes.cardContent}>
 
-        <TableContainer >
+        <TableContainer className={classes.container}>
 
-          <Table aria-label="spanning table" >
-            <TableHead>
+          <Table stickyHeader  aria-label="spanning table" >
+            <TableHead >
               <TableRow>
                 <TableCell>
                   <strong>Feature Name</strong>
@@ -78,6 +82,7 @@ const Cost = () => {
                 <TableCell><strong>Total</strong></TableCell>
                 <TableCell><strong>${totalPrice}</strong></TableCell>
               </TableRow>
+
             </TableBody>
           </Table>
 

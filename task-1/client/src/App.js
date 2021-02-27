@@ -24,8 +24,8 @@ const App = () => {
 
   return (
     <CostState>
-      <AppBarComp/>
       <React.Fragment>
+        <AppBarComp/>
         <CssBaseline />
         <Container fixed>
           <Grid container spacing={3}>

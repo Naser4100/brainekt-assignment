@@ -14,19 +14,19 @@ This is a simple Dashboard based on SHODAN REST API that shows some network or i
 * You need to install Node.js in order to install and run this project on your system 
 
 ### Step-1: Navigate to `/brainekt-assignment/task-2` <br>
-### Step-2: Open your terminal/CMD in the navigated directory and run
+### Step-2: Open your terminal/CMD in the navigated folder and run
     $ npm install
 ### Step-3: Configuring .env Variables
   * You don't need configure it. I already put it there for the sake of simplicity
-  * And, Yeah I know it's not a good a idea to push .env or environment variable files in the repository. But I'm just doing this for sake of simplicity 
+  * And, Yeah I know it's not a good idea to push .env or environment variable files in the repository. But I'm just doing this for sake of simplicity 
 ## Usage / Run project
 ### Step-1: Navigate to `/brainekt-assignment/task-2`
-### Step-2: Open your terminal/CMD in the navigated directory and run
+### Step-2: Open your terminal/CMD in the navigated folder and run
     $ npm start
 
 ### Step-3: Open your browser and goto [http://localhost:3000/](http://localhost:3000/)
 
-## Directory Structure
+## Folder Structure
 `/brainekt-assignment/task-2`
 - public
 - src
