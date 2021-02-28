@@ -76,7 +76,7 @@ const DNSResolve = () => {
       <TextField
         className={classes.marginTopStyle}
         label="Enter hostname"
-        id="dns"
+        id="dns_resolve"
         variant="outlined"
         size="small"
         

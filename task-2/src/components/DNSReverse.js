@@ -76,7 +76,7 @@ const DNSReverse = () => {
       <TextField
         className={classes.marginTopStyle}
         label="Enter hostname"
-        id="dns"
+        id="dns_reverse"
         variant="outlined"
         size="small"
         

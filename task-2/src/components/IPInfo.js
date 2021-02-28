@@ -41,7 +41,9 @@ const IPInfo = () => {
     dispatch(getIpAction());
 
     // Dispatching another action for getting IP information and change global state according to the API response
-    dispatch(getIPInfoAction(ip)); 
+    if (ip) {
+      dispatch(getIPInfoAction(ip));
+    }
 
     // IP state is added to this dependency array so 
     // if it's value changes this trigger re-rendering of this components
