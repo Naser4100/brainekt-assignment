@@ -24,7 +24,7 @@ This is a simple Dashboard based on SHODAN REST API that shows some network or i
 ### Step-2: Open your terminal/CMD in the navigated folder and run
     $ npm start
 
-### Step-3: Open your browser and goto [http://localhost:3000/](http://localhost:3000/)
+### Step-3: Open your browser and goto [http://localhost:4000/](http://localhost:4000/)
 
 ## Folder Structure
 `/brainekt-assignment/task-2`
